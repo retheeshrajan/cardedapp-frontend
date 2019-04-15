@@ -60,7 +60,7 @@ class AuthStore {
     try {
       console.log("login_1");
       console.log("userData: " + userData.username);
-      console.log(res);
+      //console.log(res);
       const res = await instance.post("login/", userData);
       if (res) {
         console.log("login_2" + res.data);

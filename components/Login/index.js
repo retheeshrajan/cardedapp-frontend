@@ -20,7 +20,7 @@ class Login extends Component {
   }
 
   handleRegister = () => {
-    this.props.navigation.navigate('Register')
+    this.props.navigation.navigate('Signup')
   }
 
   render () {
