@@ -21,9 +21,6 @@ const BottomTab = createBottomTabNavigator(
         if (routeName === "SettingTab") {
           iconName = "profile";
           iconType = "AntDesign";
-          // if (authStore.user) {
-          //   navigation.navigate("Profile");
-          // }
         } else if (routeName === "ProfileTab") {
           iconName = "person";
           iconType = "MaterialIcons";

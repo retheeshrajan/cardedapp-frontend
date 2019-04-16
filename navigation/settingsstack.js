@@ -1,12 +1,12 @@
 import { createStackNavigator } from "react-navigation";
 
-import ProfileScreen from "../components/Profile";
-
+import LoginScreen from "../components/Login";
 import MainPageScreen from "../components/MainPage";
 
 const settingsStack = createStackNavigator(
   {
     MainPage: MainPageScreen,
+    Login: LoginScreen,
   },
   {
     initialRouteName: "MainPage",
