@@ -44,12 +44,12 @@ class AuthStore {
   getProfile = async () => {
     try {
       console.log('reaching profile.....' + this.user.user_id)
-      const res = await instance.get('userupdate/')
+      const res = await instance.get('myprofile/')
       console.log('loading done profile.')
       let profile = res.data
       this.profile = profile
       this.loading = false
-      // history.navigate('Profile')
+      history.navigate('Profile')
       console.log(this.profile.first_name)
     } catch (err) {
       console.log(err.message)
