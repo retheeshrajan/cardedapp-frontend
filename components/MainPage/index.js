@@ -1,30 +1,39 @@
-import React, { Component } from 'react'
-import { observer } from 'mobx-react'
-import { withNavigation } from 'react-navigation'
+import React, { Component } from "react";
+import { observer } from "mobx-react";
+import { withNavigation } from "react-navigation";
 
 // NativeBase Components
-import { Text, Button, List, Container, Content } from 'native-base'
-import { StyleSheet } from 'react-native'
+import { Text, Button, List, Container, Content } from "native-base";
+import { StyleSheet } from "react-native";
 
 // Store
-import authStore from '../../stores/authStore'
+import authStore from "../../stores/authStore";
 
 class MainPage extends Component {
+  componentDidMount() {
+    if (!authStore.user) {
+      console.log("user not logged in..");
+      this.props.navigation.replace("Login");
+    } else {
+      console.log("user logged in..");
+    }
+  }
+
   handleProfile = () => {
     if (authStore.user) {
-      console.log('Profile..')
-      this.props.navigation.navigate('Profile')
+      console.log("Profile..");
+      this.props.navigation.navigate("Profile");
     }
-  }
+  };
 
   handleLogout = () => {
-    console.log('Logout....')
+    console.log("Logout....");
     if (authStore.user) {
-      authStore.logout(this.props.navigation)
+      authStore.logout(this.props.navigation);
     }
-  }
+  };
 
-  render () {
+  render() {
     return (
       <Container style={styles.container}>
         <Content>
@@ -39,18 +48,18 @@ class MainPage extends Component {
           </Button>
         </Content>
       </Container>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 2,
-    flexDirection: 'row',
+    flexDirection: "row",
     padding: 20,
     marginTop: 100,
-    alignContent: 'center'
-  }
-})
+    alignContent: "center",
+  },
+});
 
-export default withNavigation(observer(MainPage))
+export default withNavigation(observer(MainPage));

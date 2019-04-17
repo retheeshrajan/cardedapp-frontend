@@ -1,17 +1,15 @@
 import { createStackNavigator } from "react-navigation";
 
 import LoginScreen from "../components/Login";
-import ProfileScreen from "../components/Profile";
-import SignupScreen from "../components/Profile/Register";
+import MainPageScreen from "../components/MainPage";
 
-const myStack = createStackNavigator(
+const settingsStack = createStackNavigator(
   {
+    MainPage: MainPageScreen,
     Login: LoginScreen,
-    Profile: ProfileScreen,
-    Signup: SignupScreen,
   },
   {
-    initialRouteName: "Login",
+    initialRouteName: "MainPage",
     defaultNavigationOptions: {
       title: "CardedApp",
     },
@@ -19,4 +17,4 @@ const myStack = createStackNavigator(
   }
 );
 
-export default myStack;
+export default settingsStack;

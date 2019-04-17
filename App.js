@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text } from "react-native";
 import { Font, AppLoading } from "expo";
-import AppContainer from "./navigation/appContainer";
+import AppContainer from "./navigation/BottomTab";
 
 export default class App extends React.Component {
   state = { loading: true };
