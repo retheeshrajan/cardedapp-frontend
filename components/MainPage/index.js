@@ -19,12 +19,11 @@ class MainPage extends Component {
     }
   }
 
-  handleProfile = () => {
+  handleQRCodeGen = () => {
     if (authStore.user) {
-      console.log("Profile..");
+      console.log("Generating QR..");
 
       this.props.navigation.navigate("GenerateQR");
-
     }
   };
 
@@ -35,21 +34,19 @@ class MainPage extends Component {
     }
   };
 
-
   handleBarCodeScanner = () => {
     this.props.navigation.navigate("BarCodeScanner");
   };
-
 
   render() {
     return (
       <Container style={styles.container}>
         <Content>
-          <Button block warning onPress={this.handleProfile}>
-            <Text>View Profile</Text>
+          <Button block warning onPress={this.handleQRCodeGen}>
+            <Text>Generate QRCode</Text>
           </Button>
           <Button block info onPress={this.handleBarCodeScanner}>
-            <Text>View My Contacts</Text>
+            <Text>Scan QRCode</Text>
           </Button>
           <Button block danger onPress={this.handleLogout}>
             <Text>Logout</Text>
