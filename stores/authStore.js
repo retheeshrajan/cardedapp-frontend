@@ -42,6 +42,7 @@ class AuthStore {
 
   getProfile = async () => {
     try {
+
       console.log("reaching profile....." + this.user.user_id);
       const res = await instance.get("userupdate/");
       console.log("loading done profile.");
@@ -50,6 +51,7 @@ class AuthStore {
       this.loading = false;
       // history.navigate('Profile')
       console.log(this.profile.first_name);
+
     } catch (err) {
       console.log(err.message);
     }

@@ -10,10 +10,21 @@ import { StyleSheet } from "react-native";
 import authStore from "../../stores/authStore";
 
 class MainPage extends Component {
+  componentDidMount() {
+    if (!authStore.user) {
+      console.log("user not logged in..");
+      this.props.navigation.replace("Login");
+    } else {
+      console.log("user logged in..");
+    }
+  }
+
   handleProfile = () => {
     if (authStore.user) {
       console.log("Profile..");
+
       this.props.navigation.navigate("GenerateQR");
+
     }
   };
 
@@ -24,9 +35,11 @@ class MainPage extends Component {
     }
   };
 
+
   handleBarCodeScanner = () => {
     this.props.navigation.navigate("BarCodeScanner");
   };
+
 
   render() {
     return (
@@ -53,8 +66,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 20,
     marginTop: 100,
-    alignContent: "center"
-  }
+    alignContent: "center",
+  },
 });
 
 export default withNavigation(observer(MainPage));
