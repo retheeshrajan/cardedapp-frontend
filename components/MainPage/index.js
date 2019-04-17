@@ -22,7 +22,9 @@ class MainPage extends Component {
   handleProfile = () => {
     if (authStore.user) {
       console.log("Profile..");
-      this.props.navigation.navigate("Profile");
+
+      this.props.navigation.navigate("GenerateQR");
+
     }
   };
 
@@ -33,6 +35,12 @@ class MainPage extends Component {
     }
   };
 
+
+  handleBarCodeScanner = () => {
+    this.props.navigation.navigate("BarCodeScanner");
+  };
+
+
   render() {
     return (
       <Container style={styles.container}>
@@ -40,7 +48,7 @@ class MainPage extends Component {
           <Button block warning onPress={this.handleProfile}>
             <Text>View Profile</Text>
           </Button>
-          <Button block info>
+          <Button block info onPress={this.handleBarCodeScanner}>
             <Text>View My Contacts</Text>
           </Button>
           <Button block danger onPress={this.handleLogout}>
