@@ -7,7 +7,7 @@ import SignupScreen from "../components/Profile/Register";
 import MainPageScreen from "../components/MainPage";
 import CodeScanner from "../components/QR/BarCodeScanner";
 import RecivedUserInfo from "../components/QR/RecivedUserInfo";
-
+import UserInfo from "../components/Profile/userInfo";
 
 const myStack = createStackNavigator(
   {
@@ -16,12 +16,13 @@ const myStack = createStackNavigator(
     BarCodeScanner: CodeScanner,
     Signup: SignupScreen,
     MainPage: MainPageScreen,
-    RecivedUserInfo: RecivedUserInfo
-},
+    RecivedUserInfo: RecivedUserInfo,
+    UserInfo: UserInfo,
+  },
   {
     initialRouteName: "Login",
     defaultNavigationOptions: {
-    title: "CardedApp",
+      title: "CardedApp",
     },
     headerStyle: { backgroundColor: "#00ff00" },
   }
