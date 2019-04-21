@@ -9,9 +9,10 @@ import {
   Button,
   TouchableHighlight,
   Image,
-  Alert,
+  Alert
 } from "react-native";
 import { observer } from "mobx-react";
+import qrStore from "../../stores/QRStore";
 
 class UserInfo extends Component {
   state = {
@@ -20,14 +21,15 @@ class UserInfo extends Component {
     email: "",
     phone_number1: "",
     phone_number2: "",
-    social_media: "",
+    social_media: ""
   };
 
   handleUpdateInfo = () => {
     console.log("begin update userinfo..");
     if (authStore.user) {
+      userInfoID = qrStore.userInfoID;
       console.log("calling updateuserInfo...");
-      authStore.updateuserInfo(this.state, this.props.navigation);
+      authStore.updateuserInfo(this.state, this.props.navigation, userInfoID);
       console.log("end updateuserInfo...");
     }
   };
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#00b5ec",
+    backgroundColor: "#00b5ec"
   },
   inputContainer: {
     borderBottomColor: "#F5FCFF",
@@ -116,19 +118,19 @@ const styles = StyleSheet.create({
     height: 45,
     marginBottom: 20,
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "center"
   },
   inputs: {
     height: 45,
     marginLeft: 16,
     borderBottomColor: "#FFFFFF",
-    flex: 1,
+    flex: 1
   },
   inputIcon: {
     width: 30,
     height: 30,
     marginLeft: 15,
-    justifyContent: "center",
+    justifyContent: "center"
   },
   buttonContainer: {
     height: 45,
@@ -137,13 +139,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
     width: 250,
-    borderRadius: 30,
+    borderRadius: 30
   },
   signupButton: {
-    backgroundColor: "#FF4DFF",
+    backgroundColor: "#FF4DFF"
   },
   signUpText: {
-    color: "white",
-  },
+    color: "white"
+  }
 });
 export default observer(UserInfo);
