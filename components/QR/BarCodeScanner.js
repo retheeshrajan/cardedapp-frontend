@@ -26,6 +26,7 @@ class CodeScanner extends Component {
   }
 
   handleBarCodeScanned = ({ type, data }) => {
+    console.log(data);
     qrStore.getUserInfoScan(data);
     // alert(`${data} has been scanned!`);
 

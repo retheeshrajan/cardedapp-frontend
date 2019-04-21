@@ -4,7 +4,7 @@ import axios from "axios";
 import { AsyncStorage } from "react-native";
 
 const instance = axios.create({
-  baseURL: "http://192.168.8.100:80/"
+  baseURL: "http://192.168.100.198:80/"
 });
 
 class AuthStore {
@@ -42,7 +42,6 @@ class AuthStore {
 
   getProfile = async () => {
     try {
-
       console.log("reaching profile....." + this.user.user_id);
       const res = await instance.get("userupdate/");
       console.log("loading done profile.");
@@ -51,7 +50,6 @@ class AuthStore {
       this.loading = false;
       // history.navigate('Profile')
       console.log(this.profile.first_name);
-
     } catch (err) {
       console.log(err.message);
     }
