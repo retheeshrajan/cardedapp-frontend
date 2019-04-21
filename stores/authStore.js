@@ -4,56 +4,65 @@ import axios from "axios";
 import { AsyncStorage } from "react-native";
 
 const instance = axios.create({
-  baseURL: "http://192.168.100.198:80/"
+
+  baseURL: "http://192.168.100.206:8000/",
+
 });
 
 class AuthStore {
   user = null;
   profile = null;
   signinmsg = "";
+  loading = true;
 
   signupUser = async (userData, history) => {
     try {
       const res = await instance.post("signup/", userData);
       const user = res.data;
       this.setUser(user.token);
-      history.navigate("MainPage");
+      history.navigate("UserInfo");
       console.log("Sign up");
     } catch (err) {
       console.log(err.message);
     }
   };
 
-  updateProfile = async (userData, history) => {
+  updateuserInfo = async (userData, history) => {
     try {
       console.log("inside update profile - authStore..");
-      console.log("userData in updateProfile: " + userData.first_name);
+      console.log("userData in updateProfile: " + userData);
+      console.log("UserID: ", this.user.user_id);
 
-      const res = await instance.put("userupdate/", userData);
+      const res = await instance.put(
+        `fill/QRInfo/${this.user.user_id}/`,
+        userData
+      );
       console.log("done update..");
       let profile = res.data;
       this.profile = profile;
       this.loading = false;
-      history.replace("Profile");
+      history.replace("MainPage");
     } catch (err) {
       console.log(err.message);
     }
   };
 
-  getProfile = async () => {
-    try {
-      console.log("reaching profile....." + this.user.user_id);
-      const res = await instance.get("userupdate/");
-      console.log("loading done profile.");
-      let profile = res.data;
-      this.profile = profile;
-      this.loading = false;
-      // history.navigate('Profile')
-      console.log(this.profile.first_name);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
+
+  // getProfile = async () => {
+  //   try {
+  //     console.log("reaching profile....." + this.user.user_id);
+  //     const res = await instance.get("userupdate/");
+  //     console.log("loading done profile.");
+  //     let profile = res.data;
+  //     this.profile = profile;
+  //     this.loading = false;
+  //     // history.navigate('Profile')
+  //     console.log(this.profile.first_name);
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // };
+
 
   loginUser = async (userData, history) => {
     try {
@@ -61,7 +70,8 @@ class AuthStore {
       const user = res.data;
       this.setUser(user.token);
       console.log("this is the user", this.user);
-      history.navigate("MainPage");
+      //clear signinmessage when login is successful
+      history.replace("MainPage");
     } catch (err) {
       console.log(err.message);
       this.signinmsg = "Login failed!";
@@ -106,18 +116,19 @@ class AuthStore {
     }
   };
 
-  get myProfile() {
-    let myProfile = this.profile;
+  //   get myProfile() {
+  //     let myProfile = this.profile;
 
-    return myProfile;
-  }
+  //     return myProfile;
+  //   }
 }
 
 decorate(AuthStore, {
   user: observable,
   profile: observable,
   signinmsg: observable,
-  myProfile: computed
+  loading: observable,
+  // myProfile: computed,
 });
 
 const authStore = new AuthStore();

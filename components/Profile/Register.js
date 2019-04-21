@@ -9,7 +9,7 @@ import {
   Button,
   TouchableHighlight,
   Image,
-  Alert
+  Alert,
 } from "react-native";
 import { observer } from "mobx-react";
 
@@ -19,27 +19,23 @@ class Register extends Component {
     password: "",
     first_name: "",
     last_name: "",
-    email: ""
+    email: "",
   };
 
   handleRegister = () => {
     console.log("begin register..");
-    if (authStore.user) {
-      console.log("logout user...");
-      authStore.logout();
-    }
-    console.log("calling signupUser...");
     authStore.signupUser(this.state, this.props.navigation);
     console.log("end signupUser...");
   };
   render() {
+    // add a condition to redirect the user if he is loggedin already
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
           <Image
             style={styles.inputIcon}
             source={{
-              uri: "https://png.icons8.com/male-user/ultraviolet/50/3498db"
+              uri: "https://png.icons8.com/male-user/ultraviolet/50/3498db",
             }}
           />
           <TextInput
@@ -54,7 +50,7 @@ class Register extends Component {
           <Image
             style={styles.inputIcon}
             source={{
-              uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db"
+              uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db",
             }}
           />
           <TextInput
@@ -82,7 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#00b5ec"
+    backgroundColor: "#00b5ec",
   },
   inputContainer: {
     borderBottomColor: "#F5FCFF",
@@ -93,19 +89,19 @@ const styles = StyleSheet.create({
     height: 45,
     marginBottom: 20,
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   inputs: {
     height: 45,
     marginLeft: 16,
     borderBottomColor: "#FFFFFF",
-    flex: 1
+    flex: 1,
   },
   inputIcon: {
     width: 30,
     height: 30,
     marginLeft: 15,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   buttonContainer: {
     height: 45,
@@ -114,13 +110,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
     width: 250,
-    borderRadius: 30
+    borderRadius: 30,
   },
   signupButton: {
-    backgroundColor: "#FF4DFF"
+    backgroundColor: "#FF4DFF",
   },
   signUpText: {
-    color: "white"
-  }
+    color: "white",
+  },
 });
 export default observer(Register);

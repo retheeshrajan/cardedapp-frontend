@@ -9,20 +9,21 @@ import {
   Button,
   TouchableHighlight,
   Image,
-  Alert
+  Alert,
 } from "react-native";
 import authStore from "../../stores/authStore";
 
 class Login extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
   };
 
   handleLogin = () => {
     if (this.state.username && this.state.password) {
       authStore.loginUser(this.state, this.props.navigation);
     }
+    // add an else statement to display a message if information is missing (update the value of authStore.signinMessage)
   };
 
   handleRegister = () => {
@@ -39,7 +40,7 @@ class Login extends Component {
           <Image
             style={styles.inputIcon}
             source={{
-              uri: "https://png.icons8.com/message/ultraviolet/50/3498db"
+              uri: "https://png.icons8.com/message/ultraviolet/50/3498db",
             }}
           />
           <TextInput
@@ -54,7 +55,7 @@ class Login extends Component {
           <Image
             style={styles.inputIcon}
             source={{
-              uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db"
+              uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db",
             }}
           />
           <TextInput
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#DCDCDC"
+    backgroundColor: "#DCDCDC",
   },
   inputContainer: {
     borderBottomColor: "#F5FCFF",
@@ -101,19 +102,19 @@ const styles = StyleSheet.create({
     height: 45,
     marginBottom: 20,
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   inputs: {
     height: 45,
     marginLeft: 16,
     borderBottomColor: "#FFFFFF",
-    flex: 1
+    flex: 1,
   },
   inputIcon: {
     width: 30,
     height: 30,
     marginLeft: 15,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   buttonContainer: {
     height: 45,
@@ -122,13 +123,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
     width: 250,
-    borderRadius: 30
+    borderRadius: 30,
   },
   loginButton: {
-    backgroundColor: "#00b5ec"
+    backgroundColor: "#00b5ec",
   },
   loginText: {
-    color: "white"
-  }
+    color: "white",
+  },
 });
 export default observer(Login);
