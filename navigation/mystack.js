@@ -8,16 +8,15 @@ import MainPageScreen from "../components/MainPage";
 import CodeScanner from "../components/QR/BarCodeScanner";
 import RecivedUserInfo from "../components/QR/RecivedUserInfo";
 
-// import Contacts from "../components/Contacts";
+import Contacts from "../components/Contacts";
 
 import UserInfo from "../components/Profile/userInfo";
-
 
 const myStack = createStackNavigator(
   {
     Login: LoginScreen,
     GenerateQR: GenerateQR,
-    // Contacts: Contacts,
+    Contacts: Contacts,
     BarCodeScanner: CodeScanner,
     Signup: SignupScreen,
     MainPage: MainPageScreen,
@@ -27,9 +26,9 @@ const myStack = createStackNavigator(
   {
     initialRouteName: "Login",
     defaultNavigationOptions: {
-    title: "CardedApp",
+      title: "CardedApp",
     },
-    headerStyle: { backgroundColor: "#00ff00" }
+    headerStyle: { backgroundColor: "#00ff00" },
   }
 );
 
