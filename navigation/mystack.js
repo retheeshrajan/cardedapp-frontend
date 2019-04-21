@@ -11,6 +11,7 @@ import RecivedUserInfo from "../components/QR/RecivedUserInfo";
 import Contacts from "../components/Contacts";
 
 import UserInfo from "../components/Profile/userInfo";
+import UpdateUserInfo from "../components/forms";
 
 const myStack = createStackNavigator(
   {
@@ -22,13 +23,14 @@ const myStack = createStackNavigator(
     MainPage: MainPageScreen,
     RecivedUserInfo: RecivedUserInfo,
     UserInfo: UserInfo,
+    UpdateUserInfo: UpdateUserInfo
   },
   {
     initialRouteName: "Login",
     defaultNavigationOptions: {
-      title: "CardedApp",
+      title: "CardedApp"
     },
-    headerStyle: { backgroundColor: "#00ff00" },
+    headerStyle: { backgroundColor: "#00ff00" }
   }
 );
 
