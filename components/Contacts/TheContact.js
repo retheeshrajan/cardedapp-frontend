@@ -19,8 +19,14 @@ import styles from "./styles";
 import { withNavigation } from "react-navigation";
 
 class TheContact extends Component {
+  handlePress = () => {
+    this.props.navigation.navigate("ContactDetails", {
+      contactitem: this.props.contactitem,
+    });
+  };
+
   render() {
-    const { item } = this.props;
+    const { contactitem } = this.props;
     return (
       <>
         <View style={styles.thumbnail} />
@@ -28,7 +34,7 @@ class TheContact extends Component {
           <Card style={styles.transparent}>
             <CardItem style={styles.transparent}>
               <Left>
-                <Text style={styles.text}>{item.friends.username}</Text>
+                <Text style={styles.text}>{contactitem.friends.username}</Text>
               </Left>
             </CardItem>
           </Card>

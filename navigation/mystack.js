@@ -8,7 +8,8 @@ import MainPageScreen from "../components/MainPage";
 import CodeScanner from "../components/QR/BarCodeScanner";
 import RecivedUserInfo from "../components/QR/RecivedUserInfo";
 
-import Contacts from "../components/Contacts";
+import Contacts from "../components/Contacts/index";
+import ContactDetails from "../components/Contacts/ContactDetails";
 
 import UserInfo from "../components/Profile/userInfo";
 
@@ -17,6 +18,7 @@ const myStack = createStackNavigator(
     Login: LoginScreen,
     GenerateQR: GenerateQR,
     Contacts: Contacts,
+    ContactDetails: ContactDetails,
     BarCodeScanner: CodeScanner,
     Signup: SignupScreen,
     MainPage: MainPageScreen,
