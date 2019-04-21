@@ -56,9 +56,9 @@ class MainPage extends Component {
           <Button block info onPress={this.handleBarCodeScanner}>
             <Text>Scan QRCode</Text>
           </Button>
-          {/* <Button block info onPress={this.handleContacts}>
-            <Text>Contacts</Text>
-          </Button> */}
+          <Button block info onPress={this.handleContacts}>
+            <Text>My Contacts</Text>
+          </Button>
           <Button block danger onPress={this.handleLogout}>
             <Text>Logout</Text>
           </Button>
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 20,
     marginTop: 100,
-    alignContent: "center"
-  }
+    alignContent: "center",
+  },
 });
 
 export default withNavigation(observer(MainPage));
