@@ -56,7 +56,7 @@ class MainPage extends Component {
           <Button block info onPress={this.handleBarCodeScanner}>
             <Text>Scan QRCode</Text>
           </Button>
-          <Button block info onPress={this.handleContacts}>
+          <Button block success onPress={this.handleContacts}>
             <Text>My Contacts</Text>
           </Button>
           <Button block danger onPress={this.handleLogout}>

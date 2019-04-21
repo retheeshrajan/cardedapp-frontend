@@ -29,7 +29,7 @@ class Contacts extends Component {
     let myContacts;
     if (contacts) {
       myContacts = contacts.map(item => (
-        <TheContact item={item} key={item.friends} />
+        <TheContact contactitem={item} key={item.friends.username} />
       ));
     }
     return (
