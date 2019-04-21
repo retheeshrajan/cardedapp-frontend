@@ -29,47 +29,49 @@ class Register extends Component {
   };
   render() {
     // add a condition to redirect the user if he is loggedin already
-    return (
-      <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <Image
-            style={styles.inputIcon}
-            source={{
-              uri: "https://png.icons8.com/male-user/ultraviolet/50/3498db",
-            }}
-          />
-          <TextInput
-            style={styles.inputs}
-            placeholder="Username"
-            underlineColorAndroid="transparent"
-            onChangeText={username => this.setState({ username })}
-          />
-        </View>
+    if (!authStore.user) {
+      return (
+        <View style={styles.container}>
+          <View style={styles.inputContainer}>
+            <Image
+              style={styles.inputIcon}
+              source={{
+                uri: "https://png.icons8.com/male-user/ultraviolet/50/3498db",
+              }}
+            />
+            <TextInput
+              style={styles.inputs}
+              placeholder="Username"
+              underlineColorAndroid="transparent"
+              onChangeText={username => this.setState({ username })}
+            />
+          </View>
 
-        <View style={styles.inputContainer}>
-          <Image
-            style={styles.inputIcon}
-            source={{
-              uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db",
-            }}
-          />
-          <TextInput
-            style={styles.inputs}
-            placeholder="Password"
-            secureTextEntry={true}
-            underlineColorAndroid="transparent"
-            onChangeText={password => this.setState({ password })}
-          />
-        </View>
+          <View style={styles.inputContainer}>
+            <Image
+              style={styles.inputIcon}
+              source={{
+                uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db",
+              }}
+            />
+            <TextInput
+              style={styles.inputs}
+              placeholder="Password"
+              secureTextEntry={true}
+              underlineColorAndroid="transparent"
+              onChangeText={password => this.setState({ password })}
+            />
+          </View>
 
-        <TouchableHighlight
-          style={[styles.buttonContainer, styles.signupButton]}
-          onPress={this.handleRegister}
-        >
-          <Text style={styles.signUpText}>Sign up</Text>
-        </TouchableHighlight>
-      </View>
-    );
+          <TouchableHighlight
+            style={[styles.buttonContainer, styles.signupButton]}
+            onPress={this.handleRegister}
+          >
+            <Text style={styles.signUpText}>Sign up</Text>
+          </TouchableHighlight>
+        </View>
+      );
+    }
   }
 }
 
