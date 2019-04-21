@@ -26,7 +26,7 @@ class RecivedUserInfo extends Component {
       <Container>
         <Content>
           <ListItem>
-            <Text>{userInfo.name}</Text>
+            <Text>Name: {userInfo.name}</Text>
           </ListItem>
           <ListItem>
             <Text>Company: {userInfo.company_name}</Text>

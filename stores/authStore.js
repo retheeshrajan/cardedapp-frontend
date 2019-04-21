@@ -4,7 +4,9 @@ import axios from "axios";
 import { AsyncStorage } from "react-native";
 
 const instance = axios.create({
+
   baseURL: "http://192.168.100.206:8000/",
+
 });
 
 class AuthStore {
@@ -45,6 +47,7 @@ class AuthStore {
     }
   };
 
+
   // getProfile = async () => {
   //   try {
   //     console.log("reaching profile....." + this.user.user_id);
@@ -59,6 +62,7 @@ class AuthStore {
   //     console.log(err.message);
   //   }
   // };
+
 
   loginUser = async (userData, history) => {
     try {
