@@ -16,6 +16,8 @@ class MainPage extends Component {
       this.props.navigation.replace("Login");
     } else {
       console.log("user logged in..");
+
+      authStore.getUserInfo();
     }
   }
 
@@ -46,6 +48,14 @@ class MainPage extends Component {
     this.props.navigation.navigate("BarCodeScanner");
   };
 
+  handleUpdateUserInfo = () => {
+    const userInfo = authStore.userInfo;
+    if (userInfo) {
+      // console.log("jsjsjsjs", userInfo);
+      this.props.navigation.navigate("UpdateUserInfo", { userInfo: userInfo });
+    }
+  };
+
   render() {
     return (
       <Container style={styles.container}>
@@ -58,6 +68,9 @@ class MainPage extends Component {
           </Button>
           <Button block success onPress={this.handleContacts}>
             <Text>My Contacts</Text>
+          </Button>
+          <Button block danger onPress={this.handleUpdateUserInfo}>
+            <Text>update info</Text>
           </Button>
           <Button block danger onPress={this.handleLogout}>
             <Text>Logout</Text>
@@ -74,8 +87,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 20,
     marginTop: 100,
-    alignContent: "center",
-  },
+    alignContent: "center"
+  }
 });
 
 export default withNavigation(observer(MainPage));

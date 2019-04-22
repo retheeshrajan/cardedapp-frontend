@@ -4,7 +4,7 @@ import axios from "axios";
 import { AsyncStorage } from "react-native";
 
 const instance = axios.create({
-  baseURL: "http://192.168.100.97:80/"
+  baseURL: "http://192.168.8.102:80/"
 });
 
 class AuthStore {
@@ -12,6 +12,7 @@ class AuthStore {
   profile = null;
   signinmsg = "";
   loading = true;
+  userInfo = null;
 
   signupUser = async (userData, history) => {
     try {
@@ -43,6 +44,21 @@ class AuthStore {
       this.profile = profile;
       this.loading = false;
       history.replace("MainPage");
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  getUserInfo = async () => {
+    try {
+      const respon = await instance.get(`user/${this.user.user_id}/data/`);
+      const userDataInfo = respon.data;
+
+      const userInfoID = userDataInfo.userinfo.id;
+      const res = await instance.get(`get/userInfo/${userInfoID}/`);
+      let userInfo = res.data;
+      this.userInfo = userInfo;
+      this.loading = false;
     } catch (err) {
       console.log(err.message);
     }
@@ -126,7 +142,8 @@ decorate(AuthStore, {
   user: observable,
   profile: observable,
   signinmsg: observable,
-  loading: observable
+  loading: observable,
+  userInfo: observable
   // myProfile: computed,
 });
 
