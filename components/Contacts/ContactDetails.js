@@ -13,7 +13,7 @@ import {
   List,
   ListItem,
   Picker,
-  Content,
+  Content
 } from "native-base";
 
 // Style
@@ -26,7 +26,7 @@ import authStore from "../../stores/authStore";
 class ContactDetails extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam("contactitem", {}).name,
-    headerStyle: { backgroundColor: "#28e" },
+    headerStyle: { backgroundColor: "#28e" }
   });
 
   // state = {
@@ -50,7 +50,7 @@ class ContactDetails extends Component {
   //   );
   // }
 
-  addtoContacts = async () => {
+  addtoContacts = async contactitem => {
     try {
       if (authStore.user) {
         const contact = {
@@ -58,24 +58,24 @@ class ContactDetails extends Component {
           // [Contacts.Fields.LastName]: this.state.LastName,
           [Contacts.Fields.Company]: contactitem.friends.userinfo.company_name,
           [Contacts.Fields.Emails]: [
-            { label: "emails", number: contactitem.friends.userinfo.email },
+            { label: "emails", number: contactitem.friends.userinfo.email }
           ],
           [Contacts.Fields.PhoneNumbers]: [
             {
               label: "home",
-              number: contactitem.friends.userinfo.phone_number1,
+              number: contactitem.friends.userinfo.phone_number1
             },
             {
               label: "mobile",
-              number: contactitem.friends.userinfo.phone_number2,
-            },
-          ],
-          [Contacts.Fields.UrlAddresses]: [
-            {
-              label: "urlAddresses",
-              number: contactitem.friends.userinfo.social_media,
-            },
-          ],
+              number: contactitem.friends.userinfo.phone_number2
+            }
+          ]
+          // [Contacts.Fields.UrlAddresses]: [
+          //   {
+          //     label: "urlAddresses",
+          //     number: contactitem.friends.userinfo.social_media
+          //   }
+          // ]
         };
         const contactId = await Contacts.addContactAsync(contact);
         console.log("contactid: ", contactId);
@@ -145,7 +145,7 @@ class ContactDetails extends Component {
             </Left>
           </ListItem>
 
-          <Button full danger onPress={this.addtoContacts}>
+          <Button full danger onPress={() => this.addtoContacts(contactitem)}>
             <Text>Add to phone directory</Text>
           </Button>
         </List>
