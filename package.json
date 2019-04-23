@@ -10,6 +10,7 @@
     "@expo/vector-icons": "^10.0.1",
     "axios": "^0.18.0",
     "expo": "^32.0.0",
+    "expo-contacts": "^4.0.0",
     "jwt-decode": "^2.2.0",
     "mobx": "^5.9.4",
     "mobx-react": "^5.4.3",

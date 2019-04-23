@@ -51,7 +51,7 @@ class MainPage extends Component {
   handleUpdateUserInfo = () => {
     const userInfo = authStore.userInfo;
     if (userInfo) {
-      // console.log("jsjsjsjs", userInfo);
+      console.log("jsjsjsjs", userInfo);
       this.props.navigation.navigate("UpdateUserInfo", { userInfo: userInfo });
     }
   };
@@ -69,7 +69,7 @@ class MainPage extends Component {
           <Button block success onPress={this.handleContacts}>
             <Text>My Contacts</Text>
           </Button>
-          <Button block danger onPress={this.handleUpdateUserInfo}>
+          <Button block question onPress={this.handleUpdateUserInfo}>
             <Text>update info</Text>
           </Button>
           <Button block danger onPress={this.handleLogout}>
@@ -87,8 +87,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 20,
     marginTop: 100,
-    alignContent: "center"
-  }
+    alignContent: "center",
+  },
 });
 
 export default withNavigation(observer(MainPage));
