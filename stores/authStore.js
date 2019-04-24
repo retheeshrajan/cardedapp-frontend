@@ -4,7 +4,7 @@ import axios from "axios";
 import { AsyncStorage } from "react-native";
 
 const instance = axios.create({
-  baseURL: "http://192.168.100.206:8000/"
+  baseURL: "http://192.168.100.206:8000/",
 });
 
 class AuthStore {
@@ -36,7 +36,7 @@ class AuthStore {
       console.log("user ifoooooo", userDataInfo.userinfo.id);
 
       const res = await instance.put(
-        `fill/${userDataInfo.userinfo.id}/info/`,
+        `fill/QRInfo/${userDataInfo.userinfo.id}/`,
         userData
       );
       console.log("done update..");
@@ -143,7 +143,7 @@ decorate(AuthStore, {
   profile: observable,
   signinmsg: observable,
   loading: observable,
-  userInfo: observable
+  userInfo: observable,
   // myProfile: computed,
 });
 

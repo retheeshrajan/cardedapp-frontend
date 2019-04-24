@@ -1,9 +1,19 @@
 import React, { Component } from "react";
+// import { Divider } from 'react-native-elements';
 import { observer } from "mobx-react";
 import { Contacts } from "expo";
 import Communications from "react-native-communications";
 // NativeBase Components
-import { Text, Button, Left, List, ListItem, Content } from "native-base";
+import {
+  Text,
+  Button,
+  Left,
+  List,
+  ListItem,
+  Content,
+  Right,
+  Body,
+} from "native-base";
 
 // Style
 import styles from "./styles";
@@ -89,27 +99,27 @@ class ContactDetails extends Component {
     return (
       <Content>
         <List>
-          <ListItem style={styles.center}>
-            <Left>
+          <ListItem>
+            <Body>
               <Text style={styles.text}>
                 {contactitem.friends.username + "\n"}
               </Text>
-            </Left>
+            </Body>
           </ListItem>
 
-          <ListItem style={styles.center}>
+          <ListItem>
             <Left>
-              <Text>{contactitem.friends.userinfo.name}</Text>
+              <Text>Name : {contactitem.friends.userinfo.name}</Text>
             </Left>
           </ListItem>
-
-          <ListItem style={styles.center}>
+          {/* <Divider style={{ backgroundColor: 'blue', height:2 }} />; */}
+          <ListItem>
             <Left>
-              <Text>{contactitem.friends.userinfo.company_name}</Text>
+              <Text>Company : {contactitem.friends.userinfo.company_name}</Text>
             </Left>
           </ListItem>
 
-          <ListItem style={styles.center}>
+          <ListItem>
             <Left>
               <Text
                 onPress={() =>
@@ -122,56 +132,97 @@ class ContactDetails extends Component {
                   )
                 }
               >
-                {contactitem.friends.userinfo.email}
+                Email : {contactitem.friends.userinfo.email}
               </Text>
             </Left>
           </ListItem>
 
-          <ListItem style={styles.center}>
+          <ListItem>
             <Left>
-              <Text
+              <Text>Tel_1 : {contactitem.friends.userinfo.phone_number1}</Text>
+            </Left>
+
+            <Body>
+              <Button
+                onPress={() =>
+                  Communications.text(
+                    contactitem.friends.userinfo.phone_number1
+                  )
+                }
+                style={styles.msgbtn}
+              >
+                <Text>M</Text>
+              </Button>
+            </Body>
+            <Right>
+              <Button
                 onPress={() =>
                   Communications.phonecall(
                     contactitem.friends.userinfo.phone_number1,
                     true
                   )
                 }
+                style={styles.telbtn}
               >
-                {contactitem.friends.userinfo.phone_number1}
-              </Text>
-            </Left>
+                <Text>T</Text>
+              </Button>
+            </Right>
           </ListItem>
 
-          <ListItem style={styles.center}>
+          <ListItem>
             <Left>
-              <Text
+              <Text>Tel_2 : {contactitem.friends.userinfo.phone_number2}</Text>
+            </Left>
+            <Body>
+              <Button
+                onPress={() =>
+                  Communications.text(
+                    contactitem.friends.userinfo.phone_number2
+                  )
+                }
+                style={styles.msgbtn}
+              >
+                <Text>M</Text>
+              </Button>
+            </Body>
+            <Right>
+              <Button
                 onPress={() =>
                   Communications.phonecall(
                     contactitem.friends.userinfo.phone_number2,
                     true
                   )
                 }
+                style={styles.telbtn}
               >
-                {contactitem.friends.userinfo.phone_number2}
-              </Text>
-            </Left>
+                <Text>T</Text>
+              </Button>
+            </Right>
           </ListItem>
 
-          <ListItem style={styles.center}>
+          <ListItem>
             <Left>
               <Text
                 onPress={() =>
                   Communications.web(contactitem.friends.userinfo.social_media)
                 }
               >
-                {contactitem.friends.userinfo.social_media}
+                Social : {contactitem.friends.userinfo.social_media}
               </Text>
             </Left>
           </ListItem>
-
-          <Button full danger onPress={() => this.addtoContacts(contactitem)}>
-            <Text>Add to phone directory</Text>
-          </Button>
+          <ListItem>
+            <Left />
+            <Body>
+              <Button
+                onPress={() => this.addtoContacts(contactitem)}
+                style={styles.adddir}
+              >
+                <Text>Add</Text>
+              </Button>
+            </Body>
+            <Right />
+          </ListItem>
         </List>
       </Content>
     );
