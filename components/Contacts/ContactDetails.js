@@ -4,15 +4,11 @@ import { Contacts } from "expo";
 
 // NativeBase Components
 import {
-  Thumbnail,
   Text,
   Button,
   Left,
-  Body,
-  Right,
   List,
   ListItem,
-  Picker,
   Content
 } from "native-base";
 
@@ -20,7 +16,6 @@ import {
 import styles from "./styles";
 
 // Store
-import contactStore from "../../stores/ContactsStore";
 import authStore from "../../stores/authStore";
 
 class ContactDetails extends Component {
