@@ -1,16 +1,9 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { Contacts } from "expo";
-
+import Communications from "react-native-communications";
 // NativeBase Components
-import {
-  Text,
-  Button,
-  Left,
-  List,
-  ListItem,
-  Content
-} from "native-base";
+import { Text, Button, Left, List, ListItem, Content } from "native-base";
 
 // Style
 import styles from "./styles";
@@ -21,7 +14,7 @@ import authStore from "../../stores/authStore";
 class ContactDetails extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam("contactitem", {}).name,
-    headerStyle: { backgroundColor: "#28e" }
+    headerStyle: { backgroundColor: "#28e" },
   });
 
   // state = {
@@ -53,18 +46,18 @@ class ContactDetails extends Component {
           // [Contacts.Fields.LastName]: this.state.LastName,
           [Contacts.Fields.Company]: contactitem.friends.userinfo.company_name,
           [Contacts.Fields.Emails]: [
-            { label: "emails", number: contactitem.friends.userinfo.email }
+            { label: "emails", number: contactitem.friends.userinfo.email },
           ],
           [Contacts.Fields.PhoneNumbers]: [
             {
               label: "home",
-              number: contactitem.friends.userinfo.phone_number1
+              number: contactitem.friends.userinfo.phone_number1,
             },
             {
               label: "mobile",
-              number: contactitem.friends.userinfo.phone_number2
-            }
-          ]
+              number: contactitem.friends.userinfo.phone_number2,
+            },
+          ],
           // [Contacts.Fields.UrlAddresses]: [
           //   {
           //     label: "urlAddresses",
@@ -118,25 +111,61 @@ class ContactDetails extends Component {
 
           <ListItem style={styles.center}>
             <Left>
-              <Text>{contactitem.friends.userinfo.email}</Text>
+              <Text
+                onPress={() =>
+                  Communications.email(
+                    [contactitem.friends.userinfo.email],
+                    null,
+                    null,
+                    "My Subject",
+                    "My body text"
+                  )
+                }
+              >
+                {contactitem.friends.userinfo.email}
+              </Text>
             </Left>
           </ListItem>
 
           <ListItem style={styles.center}>
             <Left>
-              <Text>{contactitem.friends.userinfo.phone_number1}</Text>
+              <Text
+                onPress={() =>
+                  Communications.phonecall(
+                    contactitem.friends.userinfo.phone_number1,
+                    true
+                  )
+                }
+              >
+                {contactitem.friends.userinfo.phone_number1}
+              </Text>
             </Left>
           </ListItem>
 
           <ListItem style={styles.center}>
             <Left>
-              <Text>{contactitem.friends.userinfo.phone_number2}</Text>
+              <Text
+                onPress={() =>
+                  Communications.phonecall(
+                    contactitem.friends.userinfo.phone_number2,
+                    true
+                  )
+                }
+              >
+                {contactitem.friends.userinfo.phone_number2}
+              </Text>
             </Left>
           </ListItem>
 
           <ListItem style={styles.center}>
             <Left>
-              <Text>{contactitem.friends.userinfo.social_media}</Text>
+              <Text
+                onPress={() =>
+                  Communications.web(contactitem.friends.userinfo.social_media)
+                }
+              >
+                {contactitem.friends.userinfo.social_media}
+              </Text>
             </Left>
           </ListItem>
 
