@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
   Container,
   Header,
   Content,
-  View,
   ListItem,
   Text,
   Left,
@@ -11,17 +10,22 @@ import {
   Right,
   Button,
   Icon,
-  Title
-} from "native-base";
-import qrStore from "../../stores/QRStore";
+  Title,
+  Input
+} from 'native-base'
+import qrStore from '../../stores/QRStore'
+import { observer } from 'mobx-react'
 
 class RecivedUserInfo extends Component {
+  state = {
+    note: ''
+  }
   handleFollowUser = userID => {
-    qrStore.FollowUserScanned(userID);
-  };
-  render() {
-    const userInfo = this.props.navigation.getParam("userInfo");
-    console.log("sup", userInfo);
+    qrStore.FollowUserScanned(userID, this.state, this.props.navigation)
+  }
+  render () {
+    const userInfo = this.props.navigation.getParam('userInfo')
+    console.log('sup', userInfo)
     return (
       <Container>
         <Content>
@@ -40,6 +44,9 @@ class RecivedUserInfo extends Component {
           <ListItem>
             <Text>Email: {userInfo.email}</Text>
           </ListItem>
+          <ListItem>
+            <Input name='note' onChangeText={note => this.setState({ note })} />
+          </ListItem>
           <Right>
             <Button
               transparent
@@ -50,7 +57,7 @@ class RecivedUserInfo extends Component {
           </Right>
         </Content>
       </Container>
-    );
+    )
   }
 }
-export default RecivedUserInfo;
+export default observer(RecivedUserInfo)
