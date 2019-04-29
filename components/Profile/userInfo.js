@@ -26,12 +26,12 @@ class UserInfo extends Component {
     phone_number: ""
   };
 
-  handleUpdateInfo = () => {
+  handleCreateInfo = () => {
     console.log("begin update userinfo..");
     if (authStore.user) {
-      userInfoID = qrStore.userInfoID;
+      // userInfoID = qrStore.userInfoID;
       console.log("calling updateuserInfo...");
-      authStore.updateuserInfo(this.state, this.props.navigation, userInfoID);
+      authStore.CreateProfile(this.state, this.props.navigation);
       console.log("end updateuserInfo...");
     }
   };
@@ -110,7 +110,7 @@ class UserInfo extends Component {
         </View>
         <TouchableHighlight
           style={[styles.buttonContainer, styles.signupButton]}
-          onPress={this.handleUpdateInfo}
+          onPress={this.handleCreateInfo}
         >
           <Text style={styles.signUpText}>Create Profile Info</Text>
         </TouchableHighlight>

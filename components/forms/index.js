@@ -11,13 +11,14 @@ import { observer } from "mobx-react";
 
 class UpdateUserInfo extends Component {
   state = {
-    name: this.props.navigation.getParam("userInfo").name,
-    company_name: this.props.navigation.getParam("userInfo").company_name,
-    email: this.props.navigation.getParam("userInfo").email,
-    phone_number: this.props.navigation.getParam("userInfo").phone_number1,
-    phone_number2: this.props.navigation.getParam("userInfo").phone_number2,
-    social_media: this.props.navigation.getParam("userInfo").social_media,
-    profile_name: "main"
+    name: this.props.navigation.getParam("userInfo")[0].profile_name,
+    company_name: this.props.navigation.getParam("userInfo")[0].company_name,
+    email: this.props.navigation.getParam("userInfo")[0].email,
+    phone_number: this.props.navigation.getParam("userInfo")[0].phone_number1,
+    phone_number2: this.props.navigation.getParam("userInfo")[0].phone_number2,
+    social_media: this.props.navigation.getParam("userInfo")[0].social_media,
+    profile_name: "main",
+    phone_number: ""
   };
 
   handleUpdateInfo = () => {
@@ -29,6 +30,9 @@ class UpdateUserInfo extends Component {
       console.log("end updateuserInfo...");
     }
   };
+  componentDidMount() {
+    console.log("hi", this.props.navigation.getParam("userInfo"));
+  }
 
   render() {
     const {
@@ -37,7 +41,9 @@ class UpdateUserInfo extends Component {
       email,
       phone_number1,
       phone_number2,
-      social_media
+      social_media,
+      profile_name,
+      phone_number
     } = this.state;
 
     return (

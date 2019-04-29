@@ -13,6 +13,7 @@ import ContactDetails from "../components/Contacts/ContactDetails";
 
 import UserInfo from "../components/Profile/userInfo";
 import UpdateUserInfo from "../components/forms";
+import MyProfiles from "../components/Profile/MyProfile";
 
 const myStack = createStackNavigator(
   {
@@ -25,7 +26,8 @@ const myStack = createStackNavigator(
     MainPage: MainPageScreen,
     RecivedUserInfo: RecivedUserInfo,
     UserInfo: UserInfo,
-    UpdateUserInfo: UpdateUserInfo
+    UpdateUserInfo: UpdateUserInfo,
+    MyProfile: MyProfiles
   },
   {
     initialRouteName: "Login",

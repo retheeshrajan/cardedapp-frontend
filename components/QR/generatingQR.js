@@ -18,7 +18,7 @@ class GenerateQR extends Component {
       qrStore.getUserData(userID).then(() =>
         this.setState(
           {
-            userInfoAPI: `http://192.168.100.97:80/get/userInfo/${
+            userInfoAPI: `http://192.168.100.198:80/get/userInfo/${
               qrStore.userInfoID
             }/`
           },

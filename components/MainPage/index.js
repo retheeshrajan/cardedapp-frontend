@@ -8,6 +8,7 @@ import { StyleSheet } from "react-native";
 
 // Store
 import authStore from "../../stores/authStore";
+import profilesStore from "../../stores/profilesStore";
 
 class MainPage extends Component {
   componentDidMount() {
@@ -16,6 +17,7 @@ class MainPage extends Component {
       this.props.navigation.replace("Login");
     } else {
       console.log("user logged in..");
+      profilesStore.getUserData();
 
       authStore.getUserInfo();
     }
@@ -48,12 +50,28 @@ class MainPage extends Component {
     this.props.navigation.navigate("BarCodeScanner");
   };
 
+  handleNewProfile = () => {
+    this.props.navigation.navigate("UserInfo");
+  };
+
   handleUpdateUserInfo = () => {
     const userInfo = authStore.userInfo;
-    console.log("omg", authStore.userInfo);
-    if (userInfo) {
-      console.log("jsjsjsjs", userInfo);
-      this.props.navigation.navigate("UpdateUserInfo", { userInfo: userInfo });
+    console.log("omg", authStore.user);
+    // console.log("omg", authStore.userInfo);
+    if (authStore.user) {
+      if (userInfo) {
+        console.log("jsjsjsjs", userInfo);
+        this.props.navigation.navigate("UpdateUserInfo", {
+          userInfo: userInfo
+        });
+      }
+    }
+  };
+  handleMyProfile = () => {
+    if (profilesStore.userData) {
+      const userData = profilesStore.userData;
+      // console.log("userDaaaaaaataaaa!!!!!!!!!", userData);
+      this.props.navigation.navigate("MyProfile", { userData: userData });
     }
   };
 
@@ -73,8 +91,14 @@ class MainPage extends Component {
           <Button block question onPress={this.handleUpdateUserInfo}>
             <Text>update info</Text>
           </Button>
+          <Button block info onPress={this.handleNewProfile}>
+            <Text>Add Profile</Text>
+          </Button>
           <Button block danger onPress={this.handleLogout}>
             <Text>Logout</Text>
+          </Button>
+          <Button block danger onPress={this.handleMyProfile}>
+            <Text>MyProfile</Text>
           </Button>
         </Content>
       </Container>
