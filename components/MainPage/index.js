@@ -50,6 +50,7 @@ class MainPage extends Component {
 
   handleUpdateUserInfo = () => {
     const userInfo = authStore.userInfo;
+    console.log("omg", authStore.userInfo);
     if (userInfo) {
       console.log("jsjsjsjs", userInfo);
       this.props.navigation.navigate("UpdateUserInfo", { userInfo: userInfo });
@@ -87,8 +88,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 20,
     marginTop: 100,
-    alignContent: "center",
-  },
+    alignContent: "center"
+  }
 });
 
 export default withNavigation(observer(MainPage));

@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 // import { Divider } from 'react-native-elements';
-import { observer } from 'mobx-react'
-import { Contacts } from 'expo'
-import Communications from 'react-native-communications'
+import { observer } from "mobx-react";
+import { Contacts } from "expo";
+import { Communications } from "react-native-communications";
 // NativeBase Components
 import {
   Text,
@@ -13,19 +13,19 @@ import {
   Content,
   Right,
   Body
-} from 'native-base'
+} from "native-base";
 
 // Style
-import styles from './styles'
+import styles from "./styles";
 
 // Store
-import authStore from '../../stores/authStore'
+import authStore from "../../stores/authStore";
 
 class ContactDetails extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.getParam('contactitem', {}).name,
-    headerStyle: { backgroundColor: '#28e' }
-  })
+    title: navigation.getParam("contactitem", {}).name,
+    headerStyle: { backgroundColor: "#28e" }
+  });
 
   // state = {
   //   FirstName: "",
@@ -56,15 +56,15 @@ class ContactDetails extends Component {
           // [Contacts.Fields.LastName]: this.state.LastName,
           [Contacts.Fields.Company]: contactitem.friends.userinfo.company_name,
           [Contacts.Fields.Emails]: [
-            { label: 'emails', number: contactitem.friends.userinfo.email }
+            { label: "emails", number: contactitem.friends.userinfo.email }
           ],
           [Contacts.Fields.PhoneNumbers]: [
             {
-              label: 'home',
+              label: "home",
               number: contactitem.friends.userinfo.phone_number1
             },
             {
-              label: 'mobile',
+              label: "mobile",
               number: contactitem.friends.userinfo.phone_number2
             }
           ]
@@ -74,16 +74,16 @@ class ContactDetails extends Component {
           //     number: contactitem.friends.userinfo.social_media
           //   }
           // ]
-        }
-        const contactId = await Contacts.addContactAsync(contact)
-        console.log('contactid: ', contactId)
+        };
+        const contactId = await Contacts.addContactAsync(contact);
+        console.log("contactid: ", contactId);
       }
 
       // console.log("Fields: ", Contacts.Fields);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   // handleAdd = () => {
   //   if (authStore.user) {
@@ -94,15 +94,15 @@ class ContactDetails extends Component {
   //   }
   // };
 
-  render () {
-    const contactitem = this.props.navigation.getParam('contactitem', {})
+  render() {
+    const contactitem = this.props.navigation.getParam("contactitem", {});
     return (
       <Content>
         <List>
           <ListItem>
             <Body>
               <Text style={styles.text}>
-                {contactitem.friends.username + '\n'}
+                {contactitem.friends.username + "\n"}
               </Text>
             </Body>
           </ListItem>
@@ -127,8 +127,8 @@ class ContactDetails extends Component {
                     [contactitem.friends.userinfo.email],
                     null,
                     null,
-                    'My Subject',
-                    'My body text'
+                    "My Subject",
+                    "My body text"
                   )
                 }
               >
@@ -232,8 +232,8 @@ class ContactDetails extends Component {
           </ListItem>
         </List>
       </Content>
-    )
+    );
   }
 }
 
-export default observer(ContactDetails)
+export default observer(ContactDetails);

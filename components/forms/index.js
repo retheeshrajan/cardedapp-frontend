@@ -14,15 +14,17 @@ class UpdateUserInfo extends Component {
     name: this.props.navigation.getParam("userInfo").name,
     company_name: this.props.navigation.getParam("userInfo").company_name,
     email: this.props.navigation.getParam("userInfo").email,
-    phone_number1: this.props.navigation.getParam("userInfo").phone_number1,
+    phone_number: this.props.navigation.getParam("userInfo").phone_number1,
     phone_number2: this.props.navigation.getParam("userInfo").phone_number2,
-    social_media: this.props.navigation.getParam("userInfo").social_media
+    social_media: this.props.navigation.getParam("userInfo").social_media,
+    profile_name: "main"
   };
 
   handleUpdateInfo = () => {
     console.log("begin update userinfo..");
     if (authStore.user) {
       console.log("calling updateuserInfo...");
+      console.log(this.state);
       authStore.updateuserInfo(this.state, this.props.navigation);
       console.log("end updateuserInfo...");
     }
@@ -99,7 +101,24 @@ class UpdateUserInfo extends Component {
             onChangeText={social_media => this.setState({ social_media })}
           />
         </View>
-
+        <View style={styles.inputContainer}>
+          <TextInput
+            value={profile_name}
+            style={styles.inputs}
+            placeholder="profile_name"
+            underlineColorAndroid="transparent"
+            onChangeText={profile_name => this.setState({ profile_name })}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            value={phone_number}
+            style={styles.inputs}
+            placeholder="phone_number"
+            underlineColorAndroid="transparent"
+            onChangeText={phone_number => this.setState({ phone_number })}
+          />
+        </View>
         <TouchableHighlight
           style={[styles.buttonContainer, styles.signupButton]}
           onPress={this.handleUpdateInfo}

@@ -2,7 +2,7 @@ import axios from "axios";
 import { decorate, computed, observable } from "mobx";
 
 const instance = axios.create({
-  baseURL: "http://192.168.100.206:8000/"
+  baseURL: "http://192.168.100.97:80/"
 });
 
 class QRStore {
@@ -15,7 +15,7 @@ class QRStore {
       const res = await instance.get(`user/${userID}/data/`);
       const user = res.data;
       console.log("this is the user data", user);
-      this.userInfoID = user.userinfo.id;
+      this.userInfoID = user.user_info.id;
     } catch (error) {
       console.log(error);
     }

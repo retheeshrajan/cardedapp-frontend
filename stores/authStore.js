@@ -4,7 +4,7 @@ import axios from "axios";
 import { AsyncStorage } from "react-native";
 
 const instance = axios.create({
-  baseURL: "http://192.168.100.206:8000/",
+  baseURL: "http://192.168.100.97:80/"
 });
 
 class AuthStore {
@@ -16,6 +16,7 @@ class AuthStore {
 
   signupUser = async (userData, history) => {
     try {
+      console.log(this.user);
       const res = await instance.post("signup/", userData);
       const user = res.data;
       this.setUser(user.token);
@@ -31,14 +32,20 @@ class AuthStore {
       console.log("inside update profile - authStore..");
       console.log("userData in updateProfile: " + userData);
       console.log("UserID: ", this.user.user_id);
-      const respon = await instance.get(`user/${this.user.user_id}/data/`);
-      const userDataInfo = respon.data;
-      console.log("user ifoooooo", userDataInfo.userinfo.id);
-
-      const res = await instance.put(
-        `fill/QRInfo/${userDataInfo.userinfo.id}/`,
-        userData
-      );
+      // const respon = await instance.get(`user/${this.user.user_id}/data/`);
+      // const userDataInfo = respon.data;
+      // console.log("user ifoooooo", userDataInfo.userinfo.id);
+      console.log(userData);
+      let phone_number = [];
+      Object.keys(userData).forEach(item => {
+        if (item.includes("phone_number")) {
+          phone_number.push({
+            number: userData[item]
+          });
+        }
+      });
+      userData.phone_number = phone_number;
+      const res = await instance.post(`userinfo/`, userData);
       console.log("done update..");
       let profile = res.data;
       this.profile = profile;
@@ -51,9 +58,12 @@ class AuthStore {
 
   getUserInfo = async () => {
     try {
-      const respon = await instance.get(`user/${this.user.user_id}/data/`);
+      console.log("before 1");
+      console.log("this.user 1", this.user);
+      const respon = await instance.get(`user/${this.user.id}/data/`);
       const userDataInfo = respon.data;
-
+      console.log("After 1");
+      console.log("RESPONSE 1", userDataInfo);
       const userInfoID = userDataInfo.userinfo.id;
       const res = await instance.get(`get/userInfo/${userInfoID}/`);
       let userInfo = res.data;
@@ -93,13 +103,14 @@ class AuthStore {
     }
   };
 
-  checkForToken = async () => {
+  checkForToken = async navigation => {
     const token = await AsyncStorage.getItem("myToken");
     if (token) {
       const currentTime = Date.now() / 1000;
       const user = jwt_decode(token);
       if (user.exp >= currentTime) {
         this.setUser(token);
+        navigation.replace("MainPage");
       } else {
         this.logout();
       }
@@ -143,11 +154,10 @@ decorate(AuthStore, {
   profile: observable,
   signinmsg: observable,
   loading: observable,
-  userInfo: observable,
+  userInfo: observable
   // myProfile: computed,
 });
 
 const authStore = new AuthStore();
-authStore.checkForToken();
 
 export default authStore;

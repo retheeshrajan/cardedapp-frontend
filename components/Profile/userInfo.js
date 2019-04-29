@@ -21,7 +21,9 @@ class UserInfo extends Component {
     email: "",
     phone_number1: "",
     phone_number2: "",
-    social_media: ""
+    social_media: "",
+    profile_name: "",
+    phone_number: ""
   };
 
   handleUpdateInfo = () => {
@@ -90,7 +92,22 @@ class UserInfo extends Component {
             onChangeText={social_media => this.setState({ social_media })}
           />
         </View>
-
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputs}
+            placeholder="profile_name"
+            underlineColorAndroid="transparent"
+            onChangeText={profile_name => this.setState({ profile_name })}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputs}
+            placeholder="phone_number"
+            underlineColorAndroid="transparent"
+            onChangeText={phone_number => this.setState({ phone_number })}
+          />
+        </View>
         <TouchableHighlight
           style={[styles.buttonContainer, styles.signupButton]}
           onPress={this.handleUpdateInfo}
