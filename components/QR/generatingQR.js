@@ -7,30 +7,20 @@ import { observer } from "mobx-react";
 
 class GenerateQR extends Component {
   state = {
-    userInfoAPI: "",
+    userInfoAPI: ""
   };
 
   componentDidMount() {
     if (authStore.user) {
-      console.log(authStore.user);
+      console.log("this is the userID", authStore.user);
       const userID = authStore.user.user_id;
-
-      // qrStore.getUserData(userID);
-
-      // this.setState({
-      //   userInfoAPI: `http://192.168.100.97:80/get/userInfo/${
-      //     qrStore.userInfoID
-      //   }/`
-      // });
-
-      // console.log("this is userInfoID", qrStore.userInfoID);
 
       qrStore.getUserData(userID).then(() =>
         this.setState(
           {
-            userInfoAPI: `http://192.168.100.206:8000/get/userInfo/${
+            userInfoAPI: `http://192.168.100.97:80/get/userInfo/${
               qrStore.userInfoID
-            }/`,
+            }/`
           },
           () => console.log(this.state.userInfoAPI)
         )
@@ -58,7 +48,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
 
   input: {
@@ -67,6 +57,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     margin: 10,
     borderRadius: 5,
-    padding: 5,
-  },
+    padding: 5
+  }
 });
