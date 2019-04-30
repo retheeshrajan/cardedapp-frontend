@@ -39,12 +39,12 @@ class ContactDetails extends Component {
 
   // componentDidMount() {
   //   this.setState(
-  //     { FirstName: contactitem.friends.userinfo.name },
-  //     { Company: contactitem.friends.userinfo.company_name },
-  //     { email: contactitem.friends.userinfo.email },
-  //     { phoneNumberhome: contactitem.friends.userinfo.phone_number1 },
-  //     { phoneNumbermobile: contactitem.friends.userinfo.phone_number2 },
-  //     { url: contactitem.friends.userinfo.social_media }
+  //     { FirstName: contactitem.name },
+  //     { Company: contactitem.company_name },
+  //     { email: contactitem.email },
+  //     { phoneNumberhome: contactitem.phone_number1 },
+  //     { phoneNumbermobile: contactitem.phone_number2 },
+  //     { url: contactitem.social_media }
   //   );
   // }
 
@@ -52,70 +52,69 @@ class ContactDetails extends Component {
     try {
       if (authStore.user) {
         const contact = {
-          [Contacts.Fields.FirstName]: contactitem.friends.userinfo.name,
-          // [Contacts.Fields.LastName]: this.state.LastName,
-          [Contacts.Fields.Company]: contactitem.friends.userinfo.company_name,
+          [Contacts.Fields.FirstName]: contactitem.first_name,
+          [Contacts.Fields.LastName]: contactitem.last_name,
+          [Contacts.Fields.Company]: contactitem.company_name,
           [Contacts.Fields.Emails]: [
-            { label: "emails", number: contactitem.friends.userinfo.email }
+            { label: "email", email: contactitem.email }
           ],
           [Contacts.Fields.PhoneNumbers]: [
             {
               label: "home",
-              number: contactitem.friends.userinfo.phone_number1
+              number: contactitem.phone_number1
             },
             {
               label: "mobile",
-              number: contactitem.friends.userinfo.phone_number2
+              number: contactitem.phone_number2
             }
           ]
           // [Contacts.Fields.UrlAddresses]: [
           //   {
           //     label: "urlAddresses",
-          //     number: contactitem.friends.userinfo.social_media
+          //     number: contactitem.social_media
           //   }
           // ]
         };
         const contactId = await Contacts.addContactAsync(contact);
-        console.log("contactid: ", contactId);
+        //console.log("contactid: ", contactId);
       }
 
-      // console.log("Fields: ", Contacts.Fields);
+      // //console.log("Fields: ", Contacts.Fields);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
   // handleAdd = () => {
   //   if (authStore.user) {
-  //     console.log("Adding to directory begins..");
+  //     //console.log("Adding to directory begins..");
   //   } else {
-  //     console.log("user - need login to add item");
+  //     //console.log("user - need login to add item");
   //     this.props.navigation.navigate("Login");
   //   }
   // };
 
   render() {
     const contactitem = this.props.navigation.getParam("contactitem", {});
+    console.log(contactitem);
     return (
       <Content>
         <List>
           <ListItem>
             <Body>
-              <Text style={styles.text}>
-                {contactitem.friends.username + "\n"}
-              </Text>
+              <Text style={styles.text}>{contactitem.first_name + "\n"}</Text>
             </Body>
           </ListItem>
 
           <ListItem>
             <Left>
-              <Text>Name : {contactitem.friends.userinfo.name}</Text>
+              <Text>Name : {contactitem.last_name}</Text>
             </Left>
           </ListItem>
           {/* <Divider style={{ backgroundColor: 'blue', height:2 }} />; */}
           <ListItem>
             <Left>
-              <Text>Company : {contactitem.friends.userinfo.company_name}</Text>
+              <Text>Company : {contactitem.company_name}</Text>
             </Left>
           </ListItem>
 
@@ -124,7 +123,7 @@ class ContactDetails extends Component {
               <Text
                 onPress={() =>
                   Communications.email(
-                    [contactitem.friends.userinfo.email],
+                    [contactitem.email],
                     null,
                     null,
                     "My Subject",
@@ -132,23 +131,19 @@ class ContactDetails extends Component {
                   )
                 }
               >
-                Email : {contactitem.friends.userinfo.email}
+                Email : {contactitem.email}
               </Text>
             </Left>
           </ListItem>
 
           <ListItem>
             <Left>
-              <Text>Tel_1 : {contactitem.friends.userinfo.phone_number1}</Text>
+              <Text>Tel_1 : {contactitem.phone_number1}</Text>
             </Left>
 
             <Body>
               <Button
-                onPress={() =>
-                  Communications.text(
-                    contactitem.friends.userinfo.phone_number1
-                  )
-                }
+                onPress={() => Communications.text(contactitem.phone_number1)}
                 style={styles.msgbtn}
               >
                 <Text>M</Text>
@@ -157,10 +152,7 @@ class ContactDetails extends Component {
             <Right>
               <Button
                 onPress={() =>
-                  Communications.phonecall(
-                    contactitem.friends.userinfo.phone_number1,
-                    true
-                  )
+                  Communications.phonecall(contactitem.phone_number1, true)
                 }
                 style={styles.telbtn}
               >
@@ -171,15 +163,11 @@ class ContactDetails extends Component {
 
           <ListItem>
             <Left>
-              <Text>Tel_2 : {contactitem.friends.userinfo.phone_number2}</Text>
+              <Text>Tel_2 : {contactitem.phone_number2}</Text>
             </Left>
             <Body>
               <Button
-                onPress={() =>
-                  Communications.text(
-                    contactitem.friends.userinfo.phone_number2
-                  )
-                }
+                onPress={() => Communications.text(contactitem.phone_number2)}
                 style={styles.msgbtn}
               >
                 <Text>M</Text>
@@ -188,10 +176,7 @@ class ContactDetails extends Component {
             <Right>
               <Button
                 onPress={() =>
-                  Communications.phonecall(
-                    contactitem.friends.userinfo.phone_number2,
-                    true
-                  )
+                  Communications.phonecall(contactitem.phone_number2, true)
                 }
                 style={styles.telbtn}
               >
@@ -203,11 +188,9 @@ class ContactDetails extends Component {
           <ListItem>
             <Left>
               <Text
-                onPress={() =>
-                  Communications.web(contactitem.friends.userinfo.social_media)
-                }
+                onPress={() => Communications.web(contactitem.social_media)}
               >
-                Social : {contactitem.friends.userinfo.social_media}
+                Social : {contactitem.social_media}
               </Text>
             </Left>
           </ListItem>

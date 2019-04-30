@@ -22,9 +22,9 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    console.log("mount profile..");
+    //console.log("mount profile..");
     if (authStore.user) {
-      console.log("getting profile...");
+      //console.log("getting profile...");
       if (authStore.profile) {
         this.setState({
           first_name: authStore.profile.first_name,

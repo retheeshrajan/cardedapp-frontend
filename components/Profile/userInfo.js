@@ -28,12 +28,12 @@ class UserInfo extends Component {
   };
 
   handleCreateInfo = () => {
-    console.log("begin update userinfo..");
+    //console.log("begin update userinfo..");
     if (authStore.user) {
       // userInfoID = qrStore.userInfoID;
-      console.log("calling updateuserInfo...");
+      //console.log("calling updateuserInfo...");
       authStore.CreateProfile(this.state, this.props.navigation);
-      console.log("end updateuserInfo...");
+      //console.log("end updateuserInfo...");
     }
   };
 

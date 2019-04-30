@@ -23,9 +23,9 @@ class Register extends Component {
   };
 
   handleRegister = () => {
-    console.log("begin register..");
+    //console.log("begin register..");
     authStore.signupUser(this.state, this.props.navigation);
-    console.log("end signupUser...");
+    //console.log("end signupUser...");
   };
   render() {
     // add a condition to redirect the user if he is loggedin already

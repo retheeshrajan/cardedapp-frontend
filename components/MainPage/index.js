@@ -13,10 +13,10 @@ import profilesStore from "../../stores/profilesStore";
 class MainPage extends Component {
   componentDidMount() {
     if (!authStore.user) {
-      console.log("user not logged in..");
+      //console.log("user not logged in..");
       this.props.navigation.replace("Login");
     } else {
-      console.log("user logged in..");
+      //console.log("user logged in..");
       profilesStore.getUserData(authStore.user.user_id);
 
       authStore.getUserInfo();
@@ -25,7 +25,7 @@ class MainPage extends Component {
 
   handleQRCodeGen = () => {
     if (authStore.user) {
-      console.log("Generating QR..");
+      //console.log("Generating QR..");
 
       this.props.navigation.navigate("GenerateQR");
     }
@@ -33,14 +33,14 @@ class MainPage extends Component {
 
   handleContacts = () => {
     if (authStore.user) {
-      console.log("Contacts..");
+      //console.log("Contacts..");
 
       this.props.navigation.navigate("Contacts");
     }
   };
 
   handleLogout = () => {
-    console.log("Logout....");
+    //console.log("Logout....");
     if (authStore.user) {
       authStore.logout(this.props.navigation);
     }
@@ -56,11 +56,11 @@ class MainPage extends Component {
 
   handleUpdateUserInfo = () => {
     const userInfo = authStore.userInfo;
-    console.log("omg", authStore.user);
-    // console.log("omg", authStore.userInfo);
+    //console.log("omg", authStore.user);
+    // //console.log("omg", authStore.userInfo);
     if (authStore.user) {
       if (userInfo) {
-        console.log("jsjsjsjs", userInfo);
+        //console.log("jsjsjsjs", userInfo);
         this.props.navigation.navigate("UpdateUserInfo", {
           userInfo: userInfo
         });
@@ -70,7 +70,7 @@ class MainPage extends Component {
   handleMyProfile = () => {
     if (profilesStore.userData) {
       const userData = profilesStore.userData;
-      // console.log("userDaaaaaaataaaa!!!!!!!!!", userData);
+      // //console.log("userDaaaaaaataaaa!!!!!!!!!", userData);
       this.props.navigation.navigate("MyProfile", { userData: userData });
     }
   };

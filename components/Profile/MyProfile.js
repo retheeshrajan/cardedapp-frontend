@@ -22,7 +22,7 @@ class MyProfiles extends Component {
     // const userData = this.props.navigation.getParam("userData");
     // const userProfileData = this.props.navigation.getParam("userData").profiles;
     const userProfileData = profilesStore.userData.profiles;
-    console.log(userProfileData);
+    //console.log(userProfileData);
     let user;
     if (userProfileData) {
       user = userProfileData.map(userProfile => {

@@ -13,13 +13,14 @@ import { observer } from "mobx-react";
 class UpdateUserInfo extends Component {
   state = {
     id: this.props.navigation.getParam("userProfile").id,
-    name: this.props.navigation.getParam("userProfile").profile_name,
+    first_name: this.props.navigation.getParam("userProfile").first_name,
+    last_name: this.props.navigation.getParam("userProfile").last_name,
     company_name: this.props.navigation.getParam("userProfile").company_name,
     email: this.props.navigation.getParam("userProfile").email,
-    phone_number: this.props.navigation.getParam("userProfile").phone_number1,
+    phone_number1: this.props.navigation.getParam("userProfile").phone_number1,
     phone_number2: this.props.navigation.getParam("userProfile").phone_number2,
     social_media: this.props.navigation.getParam("userProfile").social_media,
-    profile_name: "main"
+    profile_name: this.props.navigation.getParam("userProfile").profile_name
   };
 
   handleUpdate = () => {
@@ -27,30 +28,40 @@ class UpdateUserInfo extends Component {
     // this.props.navigation.navigate("MyProfile");
   };
   componentDidMount() {
-    console.log("hi", this.props.navigation.getParam("userProfile"));
+    //console.log("hi", this.props.navigation.getParam("userProfile"));
   }
 
   render() {
     const {
-      name,
+      first_name,
+      last_name,
       company_name,
       email,
       phone_number1,
       phone_number2,
       social_media,
-      profile_name,
-      phone_number
+      profile_name
     } = this.state;
 
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
           <TextInput
-            value={name}
+            value={first_name}
             style={styles.inputs}
-            placeholder="name"
+            placeholder="first_name"
             underlineColorAndroid="transparent"
-            onChangeText={name => this.setState({ name })}
+            onChangeText={first_name => this.setState({ first_name })}
+          />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <TextInput
+            value={last_name}
+            style={styles.inputs}
+            placeholder="last_name"
+            underlineColorAndroid="transparent"
+            onChangeText={last_name => this.setState({ last_name })}
           />
         </View>
 

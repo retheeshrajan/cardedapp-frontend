@@ -25,7 +25,7 @@ class RecivedUserInfo extends Component {
   };
   render() {
     const userInfo = this.props.navigation.getParam("userInfo");
-    console.log("sup", userInfo);
+    //console.log("sup", userInfo);
     return (
       <Container>
         <Content>

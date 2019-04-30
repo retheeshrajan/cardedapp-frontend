@@ -27,7 +27,7 @@ class TheContact extends Component {
 
   render() {
     const contactitem = this.props.contactitem.profile;
-    console.log("COOO", contactitem);
+    //console.log("COOO", contactitem);
     return (
       <>
         <View style={styles.thumbnail} />

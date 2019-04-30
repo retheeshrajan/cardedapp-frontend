@@ -13,22 +13,19 @@ class GenerateQR extends Component {
 
   componentDidMount() {
     // if (authStore.user) {
-    //   console.log("this is the userID", authStore.user);
+    //   //console.log("this is the userID", authStore.user);
     const { profileID } = this.state;
 
     qrStore.getUserData(profileID).then(() =>
-      this.setState(
-        {
-          // userInfoAPI: `http://192.168.100.97:80/userinfo/?id=${
-          //   qrStore.userProfileID
-          // }`
+      this.setState({
+        // userInfoAPI: `http://192.168.100.198:80/userinfo/?id=${
+        //   qrStore.userProfileID
+        // }`
 
-          userInfoAPI: `http://192.168.100.97:80/userinfo/?id=${
-            qrStore.userProfileID
-          }`
-        },
-        () => console.log(this.state.userInfoAPI)
-      )
+        userInfoAPI: `http://192.168.100.198:80/userinfo/?id=${
+          qrStore.userProfileID
+        }`
+      })
     );
   }
 
