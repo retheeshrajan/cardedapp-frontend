@@ -28,7 +28,6 @@ class CodeScanner extends Component {
   handleBarCodeScanned = ({ type, data }) => {
     console.log(data);
     qrStore.getUserInfoScan(data);
-    // alert(`${data} has been scanned!`);
 
     const userInfo = qrStore.user;
     if (userInfo) {
@@ -36,11 +35,6 @@ class CodeScanner extends Component {
     }
   };
 
-  //     if (qrStore.userInfoID) {
-  //       qrStore.getUserInfo(qrStore.userInfoID);
-  //     alert("yay");
-  //     }
-  //   };
   render() {
     const { hasCameraPermission } = this.state;
     if (hasCameraPermission === null) {

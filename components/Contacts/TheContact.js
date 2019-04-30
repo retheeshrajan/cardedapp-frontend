@@ -9,7 +9,7 @@ import {
   Thumbnail,
   Text,
   Left,
-  ScrollView,
+  ScrollView
 } from "native-base";
 
 // Style
@@ -21,12 +21,13 @@ import { withNavigation } from "react-navigation";
 class TheContact extends Component {
   handlePress = () => {
     this.props.navigation.navigate("ContactDetails", {
-      contactitem: this.props.contactitem,
+      contactitem: this.props.contactitem.profile
     });
   };
 
   render() {
-    const { contactitem } = this.props;
+    const contactitem = this.props.contactitem.profile;
+    console.log("COOO", contactitem);
     return (
       <>
         <View style={styles.thumbnail} />
@@ -34,7 +35,7 @@ class TheContact extends Component {
           <Card style={styles.transparent}>
             <CardItem style={styles.transparent}>
               <Left>
-                <Text style={styles.text}>{contactitem.friends.username}</Text>
+                <Text style={styles.text}>{contactitem.company_name}</Text>
               </Left>
             </CardItem>
           </Card>

@@ -15,7 +15,7 @@ class Contacts extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: "My contact list",
     headerLeft: null,
-    headerStyle: { backgroundColor: "#6cc" },
+    headerStyle: { backgroundColor: "#6cc" }
   });
 
   componentDidMount() {
@@ -29,7 +29,7 @@ class Contacts extends Component {
     let myContacts;
     if (contacts) {
       myContacts = contacts.map(item => (
-        <TheContact contactitem={item} key={item.friends.username} />
+        <TheContact contactitem={item} key={item.profile.id} />
       ));
     }
     return (

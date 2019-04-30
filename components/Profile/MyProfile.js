@@ -19,11 +19,13 @@ import { observer } from "mobx-react";
 
 class MyProfiles extends Component {
   render() {
-    const userData = this.props.navigation.getParam("userData").profiles;
-    console.log(userData);
+    // const userData = this.props.navigation.getParam("userData");
+    // const userProfileData = this.props.navigation.getParam("userData").profiles;
+    const userProfileData = profilesStore.userData.profiles;
+    console.log(userProfileData);
     let user;
-    if (userData) {
-      user = userData.map(userProfile => {
+    if (userProfileData) {
+      user = userProfileData.map(userProfile => {
         return <UserProfile key={userProfile.id} userProfile={userProfile} />;
       });
     }

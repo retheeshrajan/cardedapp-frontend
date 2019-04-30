@@ -2,20 +2,20 @@ import axios from "axios";
 import { decorate, computed, observable } from "mobx";
 
 const instance = axios.create({
-  baseURL: "http://192.168.100.198:80/"
+  baseURL: "http://192.168.100.97:80/"
 });
 
 class QRStore {
-  userInfoID = null;
+  userProfileID = null;
   user = null;
 
-  getUserData = async userID => {
+  getUserData = async profileID => {
     try {
-      console.log("userID", userID);
-      const res = await instance.get(`user/${userID}/data/`);
-      const user = res.data;
-      console.log("this is the user data", user);
-      this.userInfoID = user.user_info.id;
+      console.log("userID", profileID);
+      const res = await instance.get(`user/${profileID}/data`);
+      const userProfile = res.data;
+      console.log("this is the user data", userProfile);
+      this.userProfileID = userProfile.id;
     } catch (error) {
       console.log(error);
     }
@@ -44,9 +44,9 @@ class QRStore {
     }
   };
 
-  FollowUserScanned = async userID => {
+  FollowUserScanned = async userProfileID => {
     try {
-      const res = await instance.post(`follow/${userID}/user/`);
+      const res = await instance.post(`follow/${userProfileID}/user/`);
       const data = res.data;
       console.log("user to follow data", data);
     } catch (error) {

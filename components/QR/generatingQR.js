@@ -7,26 +7,31 @@ import { observer } from "mobx-react";
 
 class GenerateQR extends Component {
   state = {
-    userInfoAPI: ""
+    userInfoAPI: "",
+    profileID: this.props.navigation.getParam("profileID")
   };
 
   componentDidMount() {
-    if (authStore.user) {
-      console.log("this is the userID", authStore.user);
-      const userID = authStore.user.user_id;
+    // if (authStore.user) {
+    //   console.log("this is the userID", authStore.user);
+    const { profileID } = this.state;
 
-      qrStore.getUserData(userID).then(() =>
-        this.setState(
-          {
-            userInfoAPI: `http://192.168.100.198:80/userinfo/?id=${
-              qrStore.userInfoID
-            }`
-          },
-          () => console.log(this.state.userInfoAPI)
-        )
-      );
-    }
+    qrStore.getUserData(profileID).then(() =>
+      this.setState(
+        {
+          // userInfoAPI: `http://192.168.100.97:80/userinfo/?id=${
+          //   qrStore.userProfileID
+          // }`
+
+          userInfoAPI: `http://192.168.100.97:80/userinfo/?id=${
+            qrStore.userProfileID
+          }`
+        },
+        () => console.log(this.state.userInfoAPI)
+      )
+    );
   }
+
   render() {
     return (
       <View style={styles.container}>

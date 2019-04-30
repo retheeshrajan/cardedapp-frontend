@@ -24,8 +24,13 @@ class MyProfiles extends Component {
       userProfile: userProfile
     });
   };
+
+  handleGenerateQR = profileID => {
+    this.props.navigation.navigate("GenerateQR", { profileID: profileID });
+  };
   render() {
     const userProfile = this.props.userProfile;
+    const profileID = userProfile.id;
     return (
       <Card>
         <CardItem>
@@ -46,9 +51,12 @@ class MyProfiles extends Component {
         </CardItem>
         <CardItem>
           <Left>
-            <Button transparent>
-              <Icon active name="thumbs-up" />
-              <Text>12 Likes</Text>
+            <Button
+              transparent
+              onPress={() => this.handleGenerateQR(profileID)}
+            >
+              {/* <Icon active name="thumbs-up" /> */}
+              <Text>QR</Text>
             </Button>
           </Left>
           <Body>
