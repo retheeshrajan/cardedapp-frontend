@@ -17,7 +17,7 @@ class MainPage extends Component {
       this.props.navigation.replace("Login");
     } else {
       console.log("user logged in..");
-      profilesStore.getUserData();
+      profilesStore.getUserData(authStore.user.user_id);
 
       authStore.getUserInfo();
     }

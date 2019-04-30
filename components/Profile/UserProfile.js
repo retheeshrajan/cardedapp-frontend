@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { observer } from "mobx-react";
 import { Image } from "react-native";
+import { withNavigation } from "react-navigation";
 import profilesStore from "../../stores/profilesStore";
 import {
   Container,
@@ -17,6 +19,11 @@ import {
 } from "native-base";
 
 class MyProfiles extends Component {
+  handleEdit = userProfile => {
+    this.props.navigation.navigate("UpdateUserInfo", {
+      userProfile: userProfile
+    });
+  };
   render() {
     const userProfile = this.props.userProfile;
     return (
@@ -26,6 +33,7 @@ class MyProfiles extends Component {
             <Thumbnail source={{ uri: "Image URL" }} />
             <Body>
               <Text>{userProfile.company_name}</Text>
+              <Text>{userProfile.email}</Text>
               <Text note>GeekyAnts</Text>
             </Body>
           </Left>
@@ -50,11 +58,19 @@ class MyProfiles extends Component {
             </Button>
           </Body>
           <Right>
-            <Text>11h ago</Text>
+            <Button
+              rounded
+              dark
+              onPress={() => {
+                this.handleEdit(userProfile);
+              }}
+            >
+              <Text>Edit</Text>
+            </Button>
           </Right>
         </CardItem>
       </Card>
     );
   }
 }
-export default MyProfiles;
+export default withNavigation(observer(MyProfiles));

@@ -19,7 +19,7 @@ import { observer } from "mobx-react";
 
 class MyProfiles extends Component {
   render() {
-    const userData = this.props.navigation.getParam("userData").user_info;
+    const userData = this.props.navigation.getParam("userData").profiles;
     console.log(userData);
     let user;
     if (userData) {

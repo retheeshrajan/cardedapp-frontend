@@ -1,52 +1,41 @@
 import React, { Component } from "react";
 import authStore from "../../stores/authStore";
-import profilesStore from "../../stores/profilesStore";
+
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
-  TouchableHighlight
+  Button,
+  TouchableHighlight,
+  Image,
+  Alert
 } from "react-native";
 import { observer } from "mobx-react";
+import qrStore from "../../stores/QRStore";
+import profilesStore from "../../stores/profilesStore";
 
-class UpdateUserInfo extends Component {
+class UserEdit extends Component {
   state = {
-    id: this.props.navigation.getParam("userProfile").id,
-    name: this.props.navigation.getParam("userProfile").profile_name,
-    company_name: this.props.navigation.getParam("userProfile").company_name,
-    email: this.props.navigation.getParam("userProfile").email,
-    phone_number: this.props.navigation.getParam("userProfile").phone_number1,
-    phone_number2: this.props.navigation.getParam("userProfile").phone_number2,
-    social_media: this.props.navigation.getParam("userProfile").social_media,
-    profile_name: "main"
+    name: "",
+    company_name: "",
+    email: "",
+    phone_number1: "",
+    phone_number2: "",
+    social_media: "",
+    profile_name: "",
+    phone_number: ""
   };
 
   handleUpdate = () => {
-    profilesStore.updateProfile(this.state, this.props.navigation);
-    // this.props.navigation.navigate("MyProfile");
+    profilesStore.updateProfile(this.state);
   };
-  componentDidMount() {
-    console.log("hi", this.props.navigation.getParam("userProfile"));
-  }
 
   render() {
-    const {
-      name,
-      company_name,
-      email,
-      phone_number1,
-      phone_number2,
-      social_media,
-      profile_name,
-      phone_number
-    } = this.state;
-
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
           <TextInput
-            value={name}
             style={styles.inputs}
             placeholder="name"
             underlineColorAndroid="transparent"
@@ -56,7 +45,6 @@ class UpdateUserInfo extends Component {
 
         <View style={styles.inputContainer}>
           <TextInput
-            value={company_name}
             style={styles.inputs}
             placeholder="company_name"
             underlineColorAndroid="transparent"
@@ -66,7 +54,6 @@ class UpdateUserInfo extends Component {
 
         <View style={styles.inputContainer}>
           <TextInput
-            value={email}
             style={styles.inputs}
             placeholder="email"
             underlineColorAndroid="transparent"
@@ -76,7 +63,6 @@ class UpdateUserInfo extends Component {
 
         <View style={styles.inputContainer}>
           <TextInput
-            value={phone_number1}
             style={styles.inputs}
             placeholder="phone_number1"
             underlineColorAndroid="transparent"
@@ -86,7 +72,6 @@ class UpdateUserInfo extends Component {
 
         <View style={styles.inputContainer}>
           <TextInput
-            value={phone_number2}
             style={styles.inputs}
             placeholder="phone_number2"
             underlineColorAndroid="transparent"
@@ -96,7 +81,6 @@ class UpdateUserInfo extends Component {
 
         <View style={styles.inputContainer}>
           <TextInput
-            value={social_media}
             style={styles.inputs}
             placeholder="social_media"
             underlineColorAndroid="transparent"
@@ -105,25 +89,30 @@ class UpdateUserInfo extends Component {
         </View>
         <View style={styles.inputContainer}>
           <TextInput
-            value={profile_name}
             style={styles.inputs}
             placeholder="profile_name"
             underlineColorAndroid="transparent"
             onChangeText={profile_name => this.setState({ profile_name })}
           />
         </View>
-
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputs}
+            placeholder="phone_number"
+            underlineColorAndroid="transparent"
+            onChangeText={phone_number => this.setState({ phone_number })}
+          />
+        </View>
         <TouchableHighlight
           style={[styles.buttonContainer, styles.signupButton]}
           onPress={this.handleUpdate}
         >
-          <Text style={styles.signUpText}>Update </Text>
+          <Text style={styles.signUpText}>Create Profile Info</Text>
         </TouchableHighlight>
       </View>
     );
   }
 }
-export default observer(UpdateUserInfo);
 
 const styles = StyleSheet.create({
   container: {
@@ -171,3 +160,4 @@ const styles = StyleSheet.create({
     color: "white"
   }
 });
+export default observer(UserEdit);

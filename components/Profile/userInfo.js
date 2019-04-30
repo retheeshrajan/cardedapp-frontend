@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { observer } from "mobx-react";
 import qrStore from "../../stores/QRStore";
+import profilesStore from "../../stores/profilesStore";
 
 class UserInfo extends Component {
   state = {
