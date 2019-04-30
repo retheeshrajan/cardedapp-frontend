@@ -3,7 +3,7 @@ import axios from "axios";
 import authStore from "./authStore";
 
 class ProfilesStore {
-  userData = null;
+  userData = [];
 
   getUserData = async userID => {
     try {
@@ -25,21 +25,8 @@ class ProfilesStore {
       );
       console.log("AUTHSTORE");
       console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
-      console.log("AUTHSTORE");
       console.log("--------------------------------------");
-      console.log(authStore.user);
+      // console.log(authStore.user);
       this.getUserData(authStore.user.user_id);
       history.navigate("MyProfile");
       // const userData = res.data;
@@ -55,4 +42,5 @@ decorate(ProfilesStore, {
 });
 
 const profilesStore = new ProfilesStore();
+
 export default profilesStore;

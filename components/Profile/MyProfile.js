@@ -18,8 +18,12 @@ import UserProfile from "./UserProfile";
 import { observer } from "mobx-react";
 
 class MyProfiles extends Component {
+  componentWillReceiveProps(props) {
+    console.log("the props ", props);
+  }
   render() {
-    const userData = this.props.navigation.getParam("userData").profiles;
+    // const userData = this.props.navigation.getParam("userData").profiles;
+    const userData = profilesStore.userData.profiles;
     console.log(userData);
     let user;
     if (userData) {
@@ -29,7 +33,6 @@ class MyProfiles extends Component {
     }
     return (
       <Container>
-        <Header />
         <Content>{user}</Content>
       </Container>
     );
